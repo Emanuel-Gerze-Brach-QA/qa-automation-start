@@ -1,0 +1,117 @@
+{
+  "info": {
+    "_postman_id": "421ce3c3-03dd-4c55-ba51-daa120a82390",
+    "name": "JSONPlaceholder API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "53464644",
+    "_collection_link": "https://go.postman.co/collection/53464644-421ce3c3-03dd-4c55-ba51-daa120a82390?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "GET user - non existing ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://jsonplaceholder.typicode.com/users/9999",
+          "protocol": "https",
+          "host": [
+            "jsonplaceholder",
+            "typicode",
+            "com"
+          ],
+          "path": [
+            "users",
+            "9999"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET posts by userId - should return only user 1 posts",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "\r",
+              "pm.test(\"All posts belong to userId 1\", function () {\r",
+              "    const responseJson = pm.response.json();\r",
+              "\r",
+              "    responseJson.forEach(post => {\r",
+              "        pm.expect(post.userId).to.eql(1);\r",
+              "    });\r",
+              "});\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "oauth1",
+          "oauth1": [
+            {
+              "key": "signatureMethod",
+              "value": "HMAC-SHA1",
+              "type": "string"
+            },
+            {
+              "key": "version",
+              "value": "1.0",
+              "type": "string"
+            },
+            {
+              "key": "addParamsToHeader",
+              "value": false,
+              "type": "boolean"
+            },
+            {
+              "key": "addEmptyParamsToSign",
+              "value": false,
+              "type": "boolean"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "\"id\":\"10\"",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://jsonplaceholder.typicode.com/posts?userId=1",
+          "protocol": "https",
+          "host": [
+            "jsonplaceholder",
+            "typicode",
+            "com"
+          ],
+          "path": [
+            "posts"
+          ],
+          "query": [
+            {
+              "key": "userId",
+              "value": "1",
+              "type": "text"
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
