@@ -84,6 +84,90 @@
         "header": [],
         "body": {
           "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://jsonplaceholder.typicode.com/posts?userId=9999",
+          "protocol": "https",
+          "host": [
+            "jsonplaceholder",
+            "typicode",
+            "com"
+          ],
+          "path": [
+            "posts"
+          ],
+          "query": [
+            {
+              "key": "userId",
+              "value": "9999"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET posts by invalid userId – returns empty array",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "\r",
+              "pm.test(\"All posts belong to userId 1\", function () {\r",
+              "    const responseJson = pm.response.json();\r",
+              "\r",
+              "    responseJson.forEach(post => {\r",
+              "        pm.expect(post.userId).to.eql(1);\r",
+              "    });\r",
+              "});\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "oauth1",
+          "oauth1": [
+            {
+              "key": "signatureMethod",
+              "value": "HMAC-SHA1",
+              "type": "string"
+            },
+            {
+              "key": "version",
+              "value": "1.0",
+              "type": "string"
+            },
+            {
+              "key": "addParamsToHeader",
+              "value": false,
+              "type": "boolean"
+            },
+            {
+              "key": "addEmptyParamsToSign",
+              "value": false,
+              "type": "boolean"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
           "raw": "\"id\":\"10\"",
           "options": {
             "raw": {

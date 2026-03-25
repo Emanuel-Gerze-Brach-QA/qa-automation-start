@@ -63,3 +63,29 @@ This milestone covers API testing for endpoints that use query parameters and re
   - All items in the response have `userId = 1` using `everyItem`
 
 This test demonstrates data consistency validation for filtered API responses.
+
+---
+
+## ✅ Milestone – API Filtering with Empty Results (Postman → Java)
+
+This milestone covers API behavior when a query parameter returns no matching data.
+
+### Manual API Testing (Postman)
+- Endpoint tested: `GET /posts?userId=9999`
+- Scenario: Filter posts by a non-existing userId
+- Observed behavior:
+  - HTTP Status Code: **200 OK**
+  - Response body: **empty list (`[]`)**
+
+A Postman test was added to validate that the response array is empty.
+
+### Automated API Test (Java)
+- Tools used:
+  - Java
+  - REST Assured
+  - JUnit 5
+- Automated validations:
+  - Status code is **200**
+  - Response body is an empty list using `hasSize(0)`
+
+This test validates correct API behavior when a filter does not return any data, a common real-world scenario in backend services.
