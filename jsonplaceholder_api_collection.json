@@ -92,7 +92,7 @@
           }
         },
         "url": {
-          "raw": "https://jsonplaceholder.typicode.com/posts?userId=9999",
+          "raw": "https://jsonplaceholder.typicode.com/posts?userId=1",
           "protocol": "https",
           "host": [
             "jsonplaceholder",
@@ -105,7 +105,7 @@
           "query": [
             {
               "key": "userId",
-              "value": "9999"
+              "value": "1"
             }
           ]
         }
@@ -120,14 +120,10 @@
           "script": {
             "exec": [
               "\r",
-              "pm.test(\"All posts belong to userId 1\", function () {\r",
+              "pm.test(\"Response should be empty list for non-existing userId\", function () {\r",
               "    const responseJson = pm.response.json();\r",
-              "\r",
-              "    responseJson.forEach(post => {\r",
-              "        pm.expect(post.userId).to.eql(1);\r",
-              "    });\r",
-              "});\r",
-              ""
+              "    pm.expect(responseJson.length).to.eql(0);\r",
+              "});"
             ],
             "type": "text/javascript",
             "packages": {},
@@ -176,7 +172,7 @@
           }
         },
         "url": {
-          "raw": "https://jsonplaceholder.typicode.com/posts?userId=1",
+          "raw": "https://jsonplaceholder.typicode.com/posts?userId=9999",
           "protocol": "https",
           "host": [
             "jsonplaceholder",
@@ -189,9 +185,57 @@
           "query": [
             {
               "key": "userId",
-              "value": "1",
-              "type": "text"
+              "value": "9999"
             }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "POST create new post – returns 201 and id",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"POST should return status 201\", function () {\r",
+              "    pm.response.to.have.status(201);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Response should contain generated id\", function () {\r",
+              "    const responseJson = pm.response.json();\r",
+              "    pm.expect(responseJson).to.have.property(\"id\");\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "\r\n{\r\n  \"title\": \"My first POST test\",\r\n  \"body\": \"This is a test created via Postman\",\r\n  \"userId\": 1\r\n}\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://jsonplaceholder.typicode.com/posts",
+          "protocol": "https",
+          "host": [
+            "jsonplaceholder",
+            "typicode",
+            "com"
+          ],
+          "path": [
+            "posts"
           ]
         }
       },

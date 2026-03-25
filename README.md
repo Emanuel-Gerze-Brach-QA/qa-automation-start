@@ -89,3 +89,35 @@ A Postman test was added to validate that the response array is empty.
   - Response body is an empty list using `hasSize(0)`
 
 This test validates correct API behavior when a filter does not return any data, a common real-world scenario in backend services.
+
+---
+
+## ✅ Milestone – API Resource Creation with POST (Postman → Java)
+
+This milestone covers creating a new resource using an HTTP POST request and validating the response behavior.
+
+### Manual API Testing (Postman)
+- Endpoint tested: `POST /posts`
+- Request body sent as JSON:
+  - `title`
+  - `body`
+  - `userId`
+- Observed behavior:
+  - HTTP Status Code: **201 Created**
+  - Response contains the submitted fields
+  - Response includes a generated `id`
+
+Postman tests were added to validate:
+- Status code **201**
+- Presence of the `id` field in the response
+
+### Automated API Test (Java)
+- Tools used:
+  - Java
+  - REST Assured
+  - JUnit 5
+- Automated validations:
+  - Status code is **201**
+  - Response contains a non-null `id`
+
+This milestone demonstrates creating resources via API requests and validating successful creation behavior, a core scenario for backend and API-driven systems.
