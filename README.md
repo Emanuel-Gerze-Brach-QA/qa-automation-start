@@ -1,3 +1,16 @@
+
+## Testing Overview
+
+This project covers the following API testing types:
+
+- API method testing (HTTP behavior validation)
+- End-to-end CRUD testing on a persistent backend
+- Scenario-based testing using multiple resources (bulk data)
+- Negative testing for invalid or incomplete input
+
+
+
+
 # QA Automation – Learning Project
 
 This project marks my transition from Senior Manual QA to QA Automation Engineer.
